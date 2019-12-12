@@ -3266,16 +3266,17 @@ bool wallet_api::import_key(string account_name_or_id, string wif_key)
    fc::optional<fc::ecc::private_key> optional_private_key = wif_to_key(wif_key);
    if (!optional_private_key)
       FC_THROW("Invalid private key");
-   string shorthash = detail::address_to_shorthash(optional_private_key->get_public_key());
-   copy_wallet_file( "before-import-key-" + shorthash );
-
-   if( my->import_key(account_name_or_id, wif_key) )
-   {
-      save_wallet_file();
-      copy_wallet_file( "after-import-key-" + shorthash );
-      return true;
-   }
-   return false;
+//   string shorthash = detail::address_to_shorthash(optional_private_key->get_public_key());
+//   copy_wallet_file( "before-import-key-" + shorthash );
+   return my->import_key(account_name_or_id, wif_key);
+       
+//   if( my->import_key(account_name_or_id, wif_key) )
+//   {
+//      save_wallet_file();
+//      copy_wallet_file( "after-import-key-" + shorthash );
+//      return true;
+//   }
+//   return false;
 }
 
 map<string, bool> wallet_api::import_accounts( string filename, string password )

@@ -21,10 +21,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+#include <graphene/chain/prefix.hpp>
+
 #pragma once
 
-#define GRAPHENE_SYMBOL "KGT"
-#define GRAPHENE_ADDRESS_PREFIX "KGT"
+#define GRAPHENE_SYMBOL prefix::getSymbolString()
+#define GRAPHENE_ADDRESS_PREFIX prefix::getPrefixString()
 
 #define GRAPHENE_MIN_ACCOUNT_NAME_LENGTH 1
 #define GRAPHENE_MAX_ACCOUNT_NAME_LENGTH 63

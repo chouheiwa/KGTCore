@@ -22,26 +22,41 @@
  * THE SOFTWARE.
  */
 #include <cli/cli.hpp>
+#include <graphene/chain/prefix.hpp>
 
 
 int main( int argc, char** argv )
 {
+    graphene::chain::prefix::setPrefixString("BDS");
+    graphene::chain::prefix::setSymbolString("BDS");
+    
     auto object = std::make_shared<kgt::rpc::cli>();
     std::string str;
-    str = "edceddf62c8c38b6402d909122eda35f673e714205ee9abe5a3907d5bbbf3e73";
+    str = "4a93e8abe6ab5f2b935d692e13eea73cdbfb288959fb41640b829d25b7f4bd84";
     std::string str1;
-    str1 = "ws://47.100.8.24:8056";
-    object->init(str, str1);
+    str1 = "ws://103.101.205.170:46218";
+    int res = object->init(str, str1, 1000);
+    object->setTimeout(1000);
+    
+    std::cout << res << "end\n";
+    
     int i = 0;
-    while (i < 5) {
-        std::string str2;
-        str2 = "info";
-        std::string str3;
-
-        std::cout << str3 << "\n";
-        
-        i ++;
-    }
+    std::string str2;
+    std::string str3;
+    
+    str2 = "set_password 11111111";
+    i = object->runCommand(kgt::rpc::api_type::wallet_api_type, str2, str3);
+    std::cout << str2 << "\n" << str3 << "\n";
+    
+    
+    str2 = "unlock 11111111";
+    i = object->runCommand(kgt::rpc::api_type::wallet_api_type, str2, str3);
+    std::cout << str2 << "\n" << str3 << "\n";
+    
+    str2 = "import_key lihong8 5K2EwMLdiYNLFSfiNgH5FZt5fvrCFDqNVEbThAvUewnBPFmTsaP";
+    i = object->runCommand(kgt::rpc::api_type::wallet_api_type, str2, str3);
+    std::cout << str2 << "\n" << str3 << "\n";
+    
     object.reset();
     return 0;
 }

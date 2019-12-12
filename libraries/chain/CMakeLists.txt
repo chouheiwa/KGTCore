@@ -63,7 +63,7 @@ add_library( graphene_chain
              get_config.cpp
 
              pts_address.cpp
-
+             prefix.cpp
              evaluator.cpp
              balance_evaluator.cpp
              account_evaluator.cpp
